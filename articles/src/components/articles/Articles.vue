@@ -1,42 +1,70 @@
 <template>
     <div class="articles">
+
         <div class="articles__wrapper">
             <article-item :article="article" v-for="(article, index) in articles" :key="index"/>
         </div>
+
+        <pagination
+         :itemsCount="allArticles.length"
+         :pageSize="pageSize"
+         :currentPage="currentPage"
+         @handlePageChange="handlePageChange"
+         />
     </div>
 </template>
 <script>
 
 import store from '@/store/index.js';
+import pagination from '@/utils/pagination'
 import ArticleItem from './ArticleItem.vue'
+import Pagination from '../shared/Pagination.vue';
 
 export default {
-  components: { ArticleItem },
+  components: { ArticleItem, Pagination },
   data: () => ({
-     allArticles:[]
+     allArticles:[],
+     currentPage:1,
+     pageSize:2
   }),
   props:['keywordSearch'],
   created(){
       this.geArticles()
   },
+  watch:{
+      keywordSearch(){
+          this.geArticles();
+      }
+  },
   computed:{
       articles(){
           const keywordSearch = this.keywordSearch.toLowerCase()
+          
           if(this.allArticles){
-            return this.allArticles.filter(article => article.title.toLowerCase().includes(keywordSearch)
+            let filteredArticles = this.allArticles.filter(article => article.title.toLowerCase().includes(keywordSearch)
             || article.description.toLowerCase().includes(keywordSearch) || article.body.toLowerCase().includes(keywordSearch))
+            
+            this.allArticles = filteredArticles;
+            
+            return pagination.paginate(filteredArticles, this.currentPage, this.pageSize )
           }
+
+
       }
   },
   methods:{
-      geArticles(){
+        geArticles(){
           this.axios.get(`${store.state.api_url}/articles`)
             .then( response => {
                 response.data && (this.allArticles = response.data.articles)
             })
             .catch(error=> console.log(error))
-            }
-  }
+        },
+        handlePageChange(page){
+            this.currentPage = page
+            console.log(this.currentPage,page)
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
