@@ -1,22 +1,28 @@
 <template>
   <div class="home container">
-    <search-box/>
-    <articles/>
+    <search-box @searchArticle="searchArticle"/>
+    <articles :keywordSearch="keywordSearch"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import Articles from '@/components/articles/Articles.vue'
 import SearchBox from '@/components/shared/SearchBox.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld,
     Articles,
     SearchBox
+  },
+  data:()=>({
+    keywordSearch:''
+  }),
+  methods:{
+    searchArticle(value){
+      this.keywordSearch= value
+    }
   }
 }
 </script>

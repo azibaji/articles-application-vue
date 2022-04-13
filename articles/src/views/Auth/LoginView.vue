@@ -23,7 +23,9 @@
                         placeholder="Password"
                         v-model="password">
                 </div>
-                <button class="btn auth__btn" @click.prevent="login">Submit</button>
+                <div class="submit-btn">
+                    <button class="btn auth__btn" @click.prevent="login">Login</button>
+                </div>
             </form>
             <div class="auth__footer">
                 <p>
@@ -38,6 +40,7 @@
     </div>
 </template>
 <script>
+import store from '@/store/index.js';
 export default {
     data: () => ({
         email:'',
@@ -45,60 +48,26 @@ export default {
     }),
     methods:{
         login(){
-            let user = {
-                "email":this.email,
-                "password":this.password
-            }
-            this.axios.post('Https://conduit.productionready.Io/api/users/login', user).then(
-                function(response){
-                    console.log(response)
+            let userObj = {
+                user:{
+                    email:this.email,
+                    password:this.password
+                    }
                 }
-            )
+            this.axios.post(`${store.state.api_url}/users/login`,
+                 userObj
+                )
+                .then(response => {
+                    store.commit('SET_USER', response.data.user)
+                    this.$toast.success(`Login successfully. :)`);
+                    this.$router.push({ path:'/'})
+                })
+                .catch(error=> {
+                    error.response.status === 403 && this.$toast.error(`Email or password is invalid. :(`);
+                })
         }
     }
 }
 </script>
 <style lang="scss" scoped>
-    .auth{
-        margin:70px auto;
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-        padding: 0px;
-        padding-top:0px;
-        &__header{
-            background-color: #30cf9e;
-            padding: 10px;
-            text-align: left;
-            color: white;
-            font-weight: 700;
-        }
-        form{
-            margin-top:20px;
-            text-align: left;
-            padding: 10px;
-        }
-        &__btn{
-            background: rgb(11,221,197);
-            background: linear-gradient(90deg, rgba(11,221,197,1) 0%, rgba(51,205,153,1) 56%, rgba(0,255,96,1) 100%);
-            border-radius: 10px;
-            padding: 7px 30px;
-            color: white;
-            text-decoration: none;
-            border:0px;
-            margin-top:10px;
-            font-weight: 600;
-            &:hover{
-                
-                cursor: pointer;
-            }
-        }
-        &__footer{
-            span{
-            }
-            a{
-                color:rgb(11,221,197);
-                font-weight: 600;
-            }
-        }
-    }
 </style>

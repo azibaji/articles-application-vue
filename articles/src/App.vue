@@ -1,36 +1,38 @@
 <template>
   <div>
     <main-header/>
-    <router-view class="container pt-5"/>
+    <router-view class="container main"/>
+    <main-footer/>
   </div>
 </template>
 <script>
+import MainFooter from './components/shared/MainFooter.vue'
 import MainHeader from './components/shared/MainHeader.vue'
 export default {
   components:{
-    MainHeader
+    MainHeader,
+    MainFooter
   }
 }
 </script>
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
+  height:100vh; margin:0;
+  
+  &>div{
+    display: flex;
+    flex-direction:column; 
+  }
 
-nav {
-  padding: 30px;
 }
+  .main{
+    padding-top:70px;
+    padding-bottom: 70px;
+  }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
