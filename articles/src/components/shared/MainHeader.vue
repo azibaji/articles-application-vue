@@ -63,6 +63,10 @@ export default {
             display: flex;
             justify-content: space-between;
             font-weight: $fw-damibold;
+            @media(max-width:767px){
+                flex-direction: column;
+                align-items: center;
+            }
             .new-article{
                 text-decoration: none;
                 font-size:$fs-btn;
