@@ -185,7 +185,7 @@ export default {
                     })
                 }
              } else{
-                 return 
+                 this.$toast.warning('To vote this article you must be login. :s')
              }
              
          }
