@@ -54,7 +54,7 @@ export default {
                     password:this.password
                     }
                 }
-            this.axios.post(`${store.state.api_url}/users/login`,
+            this.axios.post(`${process.env.VUE_APP_URL}/users/login`,
                  userObj
                 )
                 .then(response => {

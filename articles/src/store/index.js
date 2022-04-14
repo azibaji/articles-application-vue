@@ -2,10 +2,10 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    user:{},
-    api_url:'Https://conduit.productionready.Io/api',
+    user:{}
   },
   getters: {
+    user: state => state.user
   },
   mutations: {
     SET_USER: (state, user) => {

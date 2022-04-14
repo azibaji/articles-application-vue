@@ -51,7 +51,7 @@ export default {
                     username:this.username
                     }
                 }
-            this.axios.post(`${store.state.api_url}/users`,
+            this.axios.post(`${process.env.VUE_APP_URL}/users`,
                  userObj)
                 .then( response=> {
                     if(response.data.user){

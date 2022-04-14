@@ -52,7 +52,7 @@ export default {
                 'Authorization':`Token ${this.userFromStore.token}`
             }
             this.axios.post(
-                `${store.state.api_url}/articles`,
+                `${process.env.VUE_APP_URL}/articles`,
                 newArticleObj,
                  {headers})
             .then(response => {

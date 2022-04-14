@@ -15,7 +15,6 @@
 </template>
 <script>
 
-import store from '@/store/index.js';
 import pagination from '@/utils/pagination'
 import ArticleItem from './ArticleItem.vue'
 import Pagination from '../shared/Pagination.vue';
@@ -54,7 +53,7 @@ export default {
   },
   methods:{
         geArticles(){
-          this.axios.get(`${store.state.api_url}/articles`)
+          this.axios.get(`${process.env.VUE_APP_URL}/articles`)
             .then( response => {
                 response.data && (this.allArticles = response.data.articles)
             })

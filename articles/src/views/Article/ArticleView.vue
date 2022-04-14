@@ -114,13 +114,13 @@ export default {
     },
      methods:{
         getArticle(){
-             this.axios.get(`${store.state.api_url}/articles/${this.slug}`)
+             this.axios.get(`${process.env.VUE_APP_URL}/articles/${this.slug}`)
                 .then( response => (this.article = response.data.article) )
                 .catch( error => console.log(error) )
         },
 
         getComments(){
-            this.axios.get(`${store.state.api_url}/articles/${this.slug}/comments`)
+            this.axios.get(`${process.env.VUE_APP_URL}/articles/${this.slug}/comments`)
              .then( response => this.comments= response.data.comments)
         },
 
@@ -141,7 +141,7 @@ export default {
             const headers = {
                 'Authorization':`Token ${this.userFromStore.token}`
             }
-            this.axios.post(`${store.state.api_url}/articles/${this.slug}/comments`, comment, {headers} )
+            this.axios.post(`${process.env.VUE_APP_URL}/articles/${this.slug}/comments`, comment, {headers} )
                 .then( response => {
                      response.data.comment && this.$toast.success('Your comment sent successfully. :)')
                 })
@@ -157,7 +157,7 @@ export default {
                 }
                 if(this.votedFlag){
                     this.axios.post(
-                        `${store.state.api_url}/articles/${this.slug}/favorite`,
+                        `${process.env.VUE_APP_URL}/articles/${this.slug}/favorite`,
                         {},
                         {headers}
                     )
@@ -169,7 +169,7 @@ export default {
                     })
                 } else {
                     this.axios.delete(
-                        `${store.state.api_url}/articles/${this.slug}/favorite`,
+                        `${process.env.VUE_APP_URL}/articles/${this.slug}/favorite`,
                         {headers}
                     )
                     .then( response => {
