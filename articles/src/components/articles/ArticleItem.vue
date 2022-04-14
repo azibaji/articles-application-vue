@@ -75,6 +75,8 @@ export default {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
+                    height: 50px;
+                    align-items: flex-end;
                     span{
                         background-color: $background-green;
                         color:white;
