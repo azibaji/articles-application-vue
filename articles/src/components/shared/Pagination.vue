@@ -28,7 +28,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
+@import '@/assets/sass/_variables';
     .pagination {
         text-align: center;
         margin:0px auto;

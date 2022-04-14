@@ -42,7 +42,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
+@import '@/assets/sass/_variables';
     .article-item{
         border: 1px solid $color-light-gray;
         min-height: 438px;

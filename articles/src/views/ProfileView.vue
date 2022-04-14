@@ -58,7 +58,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '.././assets/sass/_variables';
+@import '@/assets/sass/_variables';
     .profile{
         text-align: left;
         &__header{

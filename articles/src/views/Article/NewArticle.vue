@@ -19,7 +19,7 @@
 
             
             <div class="form-group">
-                <label for="exampleFormControlInput1">Tags:(please separate tags with , )</label>
+                <label for="exampleFormControlInput1">Tags: (Please separate tags with , )</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="short description" v-model="tags">
             </div>
 
@@ -78,7 +78,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../../assets/sass/_variables';
+@import '@/assets/sass/_variables';
     .new-article{
         text-align: left;
         label{
