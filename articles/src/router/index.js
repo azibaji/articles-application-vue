@@ -5,6 +5,7 @@ import NewArticleView from '../views/Article/NewArticle.vue'
 import LoginView from '../views/Auth/LoginView.vue'
 import RegisterView from '../views/Auth/RegisterView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import TagView from '../views/Article/TagView'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path:'/profile',
     name:'profile',
     component:ProfileView
+  },
+  {
+    path:'/tag/:articleName/:tagName',
+    name:'tag',
+    component:TagView
   },
 ]
 

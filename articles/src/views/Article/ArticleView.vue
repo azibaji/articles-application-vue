@@ -52,7 +52,15 @@
            
         </div>
         <div class="article__body">
-            {{article.body}}
+            <div class="text">
+                 {{article.body}}
+            </div>
+            <div class="tags">
+                <router-link v-for="(tag, index) in article.tagList" :key="index" :to="{ name: 'tag', params: { tagName: tag, articleName: article.slug }}">
+                    <span >{{tag}}</span>
+                </router-link> 
+            </div>
+           
         </div>
         <div class="article__footer" v-if="comments">
             <div class="comment" v-for="comment in comments" :key="comment.id">
@@ -262,6 +270,27 @@ export default {
         &__body{
             margin:30px 60px;
             text-align: justify;
+                .tags{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: flex-end;
+                    margin-top: 30px;
+                    span{
+                        background-color: $background-green;
+                        color:white;
+                        padding-right: 0.6em;
+                        padding-left: 0.6em;
+                        border-radius: 10rem;
+                        margin-right:5px;
+                        font-size: $fs-item-title;
+                        transition: 0.3s;
+                        &:hover{
+                            -webkit-box-shadow: 1px 1px 7px 2px rgba(208,208,208,0.87); 
+                            box-shadow: 1px 1px 7px 2px rgba(208,208,208,0.87);
+                        }
+                    }
+                }
         }
         &__footer{
             .comment{
