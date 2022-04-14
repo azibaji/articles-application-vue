@@ -22,17 +22,23 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height:100vh; margin:0;
+  margin:0;
+  display: flex;
+  flex-direction: column;
+  
   
   &>div{
     display: flex;
     flex-direction:column; 
+    min-height: 100vh;
+    justify-content: space-between;
   }
 
 }
   .main{
     padding-top:70px;
     padding-bottom: 70px;
+    
   }
 
 </style>
