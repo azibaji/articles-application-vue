@@ -41,7 +41,10 @@ export default {
                 }   
             }
             .page-link{
-                color:black
+                color:black;
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
         
