@@ -78,7 +78,7 @@
                 </div>
                 
             </div>
-            <div class="new-comment" v-if="userFromStore.email">
+            <div class="new-comment" v-if="user.email">
                 <div class="form-group" v-if="newCommentFlag">
                     <label for="exampleFormControlTextarea1">Write your comment</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="commentText"></textarea>
@@ -99,7 +99,7 @@
     </div> 
 </template>
 <script>
-import store from '@/store/index.js';
+import {mapGetters} from 'vuex'
 export default {
      data(){
         return{
@@ -116,9 +116,9 @@ export default {
          this.getComments()
      },
     computed: {
-        userFromStore() {
-            return store.state.user;
-        },
+      ...mapGetters({
+        user: "user",
+      })
     },
      methods:{
         getArticle(){
@@ -147,7 +147,7 @@ export default {
                 }
             }
             const headers = {
-                'Authorization':`Token ${this.userFromStore.token}`
+                'Authorization':`Token ${this.user.token}`
             }
             this.axios.post(`${process.env.VUE_APP_URL}/articles/${this.slug}/comments`, comment, {headers} )
                 .then( response => {
@@ -158,10 +158,10 @@ export default {
                 })
          },
          submitVote(){
-             if(this.userFromStore.email){
+             if(this.user.email){
                 this.votedFlag = !this.votedFlag
                 const headers = {
-                    'Authorization':`Token ${this.userFromStore.token}`
+                    'Authorization':`Token ${this.user.token}`
                 }
                 if(this.votedFlag){
                     this.axios.post(

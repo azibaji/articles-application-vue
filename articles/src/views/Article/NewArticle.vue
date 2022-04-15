@@ -29,7 +29,7 @@
     </div>
 </template>
 <script>
-import store from '@/store/index.js';
+import {mapGetters} from 'vuex'
 export default {
     data:()=>({
         title:'',
@@ -37,6 +37,11 @@ export default {
         description:'',
         tags:''
     }),
+    computed: {
+      ...mapGetters({
+        user: "user",
+      })
+    },
     methods:{
         postArticle(){
             const tagsArrey = this.tags.split(',')
@@ -49,7 +54,7 @@ export default {
                 }
             }
             const headers = {
-                'Authorization':`Token ${this.userFromStore.token}`
+                'Authorization':`Token ${this.user.token}`
             }
             this.axios.post(
                 `${process.env.VUE_APP_URL}/articles`,
@@ -69,12 +74,7 @@ export default {
                 }
             })
         }
-    },
-    computed: {
-        userFromStore() {
-            return store.state.user;
-        },
-    },
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -25,28 +25,28 @@
     </div>
 </template>
 <script>
-import store from '@/store/index.js';
+import {mapGetters} from 'vuex'
 export default {
     data:()=>({
-        user:{}
+        userObj:{}
     }),
     created(){
-        this.user= {...this.userFromStore}  
+        this.userObj= this.user 
     },
     computed: {
-        userFromStore() {
-            return store.state.user;
-        }
+      ...mapGetters({
+        user: "user",
+      })
     },
     methods:{
         saveProfile(){
             const user = {
                 user:{
-                    email:this.user.email
+                    email:this.userObj.email
                 }
             }
             const headers = {
-                'Authorization':`Token ${this.userFromStore.token}`
+                'Authorization':`Token ${this.user.token}`
             }
             if(this.user.username){
                 this.axios.put(`${process.env.VUE_APP_URL}/user`, user, { headers })
