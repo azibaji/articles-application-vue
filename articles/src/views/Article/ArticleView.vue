@@ -151,7 +151,7 @@ export default {
             }
             this.axios.post(`${process.env.VUE_APP_URL}/articles/${this.slug}/comments`, comment, {headers} )
                 .then( response => {
-                     response.data.comment && this.$toast.success('Your comment sent successfully. :)')
+                     response.data.comment && this.$toast.success('Your comment was sent successfully. :)')
                 })
                 .catch( error => {
                         error.response && this.$toast.error(error.response.statusText)
@@ -170,7 +170,7 @@ export default {
                         {headers}
                     )
                     .then(response => {
-                        response.data && this.$toast.success('This article added to your favorites list successfully. ')
+                        response.data && this.$toast.success('This article was added to your favorites list successfully. ')
                     })
                     .catch(error=> {
                         this.$toast.error(error.response.statusText)
@@ -185,7 +185,7 @@ export default {
                     })
                 }
              } else{
-                 this.$toast.warning('To vote this article you must be login. :s')
+                 this.$toast.warning('To vote this article you must log in. :s')
              }
              
          }

@@ -51,7 +51,7 @@ export default {
             if(this.user.username){
                 this.axios.put(`${process.env.VUE_APP_URL}/user`, user, { headers })
                 .then( response => response.data && this.$toast.success('Your profile updated succesfully.'))
-                .catch(error => error.response.status === 500 && this.$toast.error('Email must be unique'))
+                .catch(error => error.response.status === 500 && this.$toast.error('Your email must be unique'))
             }
         }
     }

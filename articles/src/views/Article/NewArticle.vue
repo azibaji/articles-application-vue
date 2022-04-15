@@ -57,7 +57,7 @@ export default {
                  {headers})
             .then(response => {
                 if(response.data.article){
-                    this.$toast.success(`Your article saved successfully. :)`);
+                    this.$toast.success(`Your article was saved successfully. :)`);
                     this.$router.push({ path: '/' });
                 }
             })

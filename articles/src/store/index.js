@@ -12,8 +12,4 @@ export default createStore({
       state.user = user
     },
   },
-  actions: {
-  },
-  modules: {
-  }
 })
