@@ -23,16 +23,20 @@ export default {
   components: { ArticleItem, Pagination },
   data: () => ({
      allArticles:[],
+     copyOfAllArticles:[],
      currentPage:1,
      pageSize:2
   }),
   props:['keywordSearch'],
+
   created(){
       this.geArticles()
   },
+
   watch:{
+
       keywordSearch(){
-          this.geArticles();
+          this.allArticles = this.copyOfAllArticles
       }
   },
   computed:{
@@ -56,12 +60,13 @@ export default {
           this.axios.get(`${process.env.VUE_APP_URL}/articles`)
             .then( response => {
                 response.data && (this.allArticles = response.data.articles)
+                this.copyOfAllArticles = this.allArticles
             })
             .catch(error=> console.log(error))
         },
+
         handlePageChange(page){
             this.currentPage = page
-            console.log(this.currentPage,page)
         }
     }
 }
